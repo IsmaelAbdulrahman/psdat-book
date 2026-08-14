@@ -29,12 +29,12 @@ running on your phone, fully offline.
 The app is **completely free** and is currently in **closed testing** on Google Play.
 
 1. Use an Android phone or tablet.
-2. [Add your email using this short form](https://forms.gle/y9z1w7kdxS7wnJcU9) — enter
+2. [Add your email using this short form](https://forms.gle/EuKSDUdEcQuDzB5L8) — enter
    the Google (Gmail) account you use on your Android device. Your email stays private;
    only the author sees it.
 3. Once you have been added, open the app on Google Play and install it.
 
-**[✉️ Add your email to join](https://forms.gle/y9z1w7kdxS7wnJcU9)**
+**[✉️ Add your email to join](https://forms.gle/EuKSDUdEcQuDzB5L8)**
 
 Already added?
 **[Open PSDAT on Google Play →](https://play.google.com/store/apps/details?id=com.psdat.mobile)**
