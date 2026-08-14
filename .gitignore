@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+build/
+dist/
+*.spec.bak
+
+# PyInstaller / packaging output
+python/build/
+python/dist/
+*.exe
+*.msi
+
+# MATLAB
+*.asv
+*.mex*
+slprj/
+*.slxc
+
+# LaTeX (if book sources are ever added)
+*.aux
+*.log
+*.out
+*.toc
+*.idx
+*.ilg
+*.ind
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.lof
+*.lot
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local scratch
+*.tmp
+*.bak
+psdat_out/

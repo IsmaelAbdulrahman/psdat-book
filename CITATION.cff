@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+title: "PSDAT — Power System Dynamic Analysis Toolbox"
+message: "If you use this software or the accompanying textbook, please cite them as below."
+type: software
+authors:
+  - family-names: Abdulrahman
+    given-names: Ismael Khorshed
+    email: ismael.abdulrahman@epu.edu.iq
+    affiliation: "Erbil Polytechnic University, Erbil, Kurdistan Region, Iraq"
+repository-code: "https://github.com/ismaelabdulrahman/psdat-book"
+url: "https://ismaelabdulrahman.github.io/psdat-book/"
+abstract: >-
+  PSDAT is a transparent, open, education-first toolbox for the static and
+  dynamic analysis of renewable-dominated power systems, with matched Python
+  and MATLAB implementations and a free Android companion app. It is the
+  toolbox behind the graduate textbook "Power System Dynamics of
+  Renewable-Dominated Grids: A Transparent, Computational Approach with PSDAT".
+keywords:
+  - power system dynamics
+  - transient stability
+  - small-signal stability
+  - grid-forming converters
+  - inverter-based resources
+  - renewable energy
+  - FACTS
+  - phasor measurement units
+  - open-source education
+license: MIT
+version: "2.2.0"
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Abdulrahman
+      given-names: Ismael
+  title: "MATLAB-Based Programs for Power System Dynamic Analysis"
+  journal: "IEEE Open Access Journal of Power and Energy"
+  volume: 7
+  start: 59
+  end: 69
+  year: 2020
+  doi: "10.1109/OAJPE.2019.2954205"

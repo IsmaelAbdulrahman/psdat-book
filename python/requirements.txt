@@ -1,0 +1,21 @@
+# PSDAT — Python reference implementation
+# Python 3.9 or newer
+#
+#   pip install -r requirements.txt
+#   python psdat_gui.py
+
+numpy>=1.21
+scipy>=1.7
+matplotlib>=3.4
+
+# --- optional -------------------------------------------------------------
+# A Qt binding gives PSDAT a native desktop window. Without one, the GUI
+# opens in your default web browser instead — everything still works.
+#
+#   pip install PyQt5
+# or
+#   pip install PySide6
+#
+# Pillow is only needed for image export from the plot panels:
+#
+#   pip install Pillow

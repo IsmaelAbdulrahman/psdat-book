@@ -1,0 +1,30 @@
+Copyright © 2026 Ismael Khorshed Abdulrahman. All rights reserved.
+
+This notice covers the written content of this repository — the textbook
+"Power System Dynamics of Renewable-Dominated Grids: A Transparent,
+Computational Approach with PSDAT" in book/, together with its figures and
+prose.
+
+The book is provided free of charge for anyone who wishes to read, download,
+and learn from it. You may:
+
+  - read and download the book for personal, educational, and research use;
+  - quote brief passages for purposes such as review and scholarly citation,
+    with attribution.
+
+You may NOT, without prior written permission from the copyright holder:
+
+  - reproduce, redistribute, host, or transmit the book, in whole or in
+    substantial part, in any form or medium;
+  - create or distribute modified or derivative versions of the book;
+  - use the book, or substantial parts of it, for commercial purposes.
+
+Voluntary donations in support of the book's and the PSDAT app's continued
+development are warmly welcomed and appreciated.
+
+To request permission beyond the uses above, contact:
+Ismael Khorshed Abdulrahman — ismael.abdulrahman@epu.edu.iq
+
+--------------------------------------------------------------------------
+The SOURCE CODE in this repository (python/, matlab/, docs/) is licensed
+separately and openly under the MIT License — see LICENSE.

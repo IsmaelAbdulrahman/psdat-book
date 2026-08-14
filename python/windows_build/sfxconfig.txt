@@ -1,0 +1,6 @@
+;!@Install@!UTF-8!
+Title="PSDAT 2.1 Setup"
+BeginPrompt="Install PSDAT — the Power System Dynamic Analysis Toolbox?\n\nNo Python, no MATLAB and no admin rights are required.\nIt installs for the current user and creates Desktop and Start-menu shortcuts."
+Progress="yes"
+RunProgram="install.cmd"
+;!@InstallEnd@!

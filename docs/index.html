@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PSDAT — Power System Dynamics of Renewable-Dominated Grids</title>
+<meta name="description" content="A free graduate textbook and open-source toolbox for the dynamics of renewable-dominated power grids — with Python, MATLAB and a free Android companion app.">
+<meta name="author" content="Ismael Khorshed Abdulrahman">
+<link rel="icon" href="assets/psdat_icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Power System Dynamics of Renewable-Dominated Grids">
+<meta property="og:description" content="A transparent, computational approach with PSDAT — free book, open-source Python and MATLAB toolbox, and a free companion app.">
+<meta property="og:url" content="https://ismaelabdulrahman.github.io/psdat-book/">
+<meta property="og:image" content="https://ismaelabdulrahman.github.io/psdat-book/assets/cover.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+:root{
+  --navy:#0d2a63; --navy-2:#173a7e; --blue:#2563eb; --blue-l:#3b82f6;
+  --violet:#7c3aed; --ink:#111a2e; --body:#3b455c; --muted:#6b7590;
+  --line:#e2e7f0; --bg:#ffffff; --soft:#f5f7fc; --soft-2:#eef2fb;
+  --radius:16px; --max:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--body);
+  font:400 17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{color:var(--ink);line-height:1.2;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(2.1rem,5.2vw,3.5rem);font-weight:800}
+h2{font-size:clamp(1.6rem,3.4vw,2.2rem);font-weight:750}
+h3{font-size:1.15rem;font-weight:700}
+p{margin:0 0 1em}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+code,kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em}
+
+/* ---------- nav ---------- */
+nav{
+  position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);
+  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line);
+}
+nav .wrap{display:flex;align-items:center;gap:20px;height:62px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+.brand img{width:28px;height:28px;border-radius:7px}
+.navlinks{margin-left:auto;display:flex;gap:24px;font-size:.95rem;font-weight:600}
+.navlinks a{color:var(--body)}
+.navlinks a:hover{color:var(--blue);text-decoration:none}
+@media(max-width:760px){.navlinks{display:none}}
+
+/* ---------- hero ---------- */
+.hero{
+  background:
+    radial-gradient(1100px 520px at 12% -8%, #dbe6ff 0%, transparent 60%),
+    radial-gradient(900px 480px at 92% 0%, #ece0ff 0%, transparent 62%),
+    linear-gradient(180deg,#f7f9ff 0%,#ffffff 100%);
+  border-bottom:1px solid var(--line);
+  padding:68px 0 76px;
+}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px}}
+.eyebrow{
+  display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--violet);
+  background:#f3ecff;border:1px solid #e3d5ff;border-radius:999px;padding:6px 14px;margin-bottom:20px;
+}
+.hero h1 span{background:linear-gradient(92deg,var(--blue) 0%,var(--violet) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:1.12rem;color:var(--body);max-width:36em;margin-bottom:14px}
+.byline{font-size:.95rem;color:var(--muted);margin-bottom:28px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:11px;
+  font-weight:700;font-size:.97rem;border:1px solid transparent;transition:.15s;
+}
+.btn:hover{text-decoration:none;transform:translateY(-1px)}
+.btn-primary{background:linear-gradient(95deg,var(--navy),var(--blue));color:#fff;
+  box-shadow:0 6px 20px -6px rgba(37,99,235,.5)}
+.btn-secondary{background:#fff;color:var(--ink);border-color:var(--line);
+  box-shadow:0 2px 10px -4px rgba(17,26,46,.14)}
+.btn-ghost{background:transparent;color:var(--body);border-color:var(--line)}
+
+/* cover */
+.cover-frame{
+  border-radius:14px;overflow:hidden;box-shadow:0 26px 60px -22px rgba(13,42,99,.45),0 3px 10px rgba(13,42,99,.12);
+  border:1px solid rgba(13,42,99,.12);background:#fff;
+}
+.cover-frame img{display:block;width:100%;height:auto}
+.cover-fallback{
+  aspect-ratio:1/1.414;padding:34px 30px;color:#fff;display:flex;flex-direction:column;
+  background:linear-gradient(160deg,#0d2a63 0%,#2454c4 48%,#7c3aed 100%);
+}
+.cover-fallback .t1{font-size:1.9rem;font-weight:800;line-height:1.12;letter-spacing:-.02em}
+.cover-fallback .t2{font-size:1.05rem;font-weight:600;opacity:.9;margin-top:14px}
+.cover-fallback .t3{margin-top:auto;font-size:.9rem;opacity:.85;letter-spacing:.04em}
+
+/* ---------- sections ---------- */
+section{padding:74px 0}
+section.alt{background:var(--soft);border-block:1px solid var(--line)}
+.sec-head{max-width:44em;margin-bottom:40px}
+.sec-head p{color:var(--muted);font-size:1.05rem;margin:0}
+
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+@media(max-width:880px){.grid3,.grid2{grid-template-columns:1fr}}
+
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;
+  box-shadow:0 1px 3px rgba(17,26,46,.05);transition:.18s;
+}
+.card:hover{box-shadow:0 12px 30px -14px rgba(13,42,99,.28);transform:translateY(-2px)}
+.card h3{margin-bottom:.35em}
+.card p{margin:0;font-size:.97rem;color:var(--body)}
+.card .num{
+  display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;
+  border-radius:9px;background:linear-gradient(140deg,#e8effe,#f1e9ff);color:var(--navy);
+  font-weight:800;font-size:.95rem;margin-bottom:14px;
+}
+
+pre{
+  background:#0e1830;color:#dbe4f7;border-radius:12px;padding:18px 20px;overflow-x:auto;
+  font:500 .87rem/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;margin:0 0 4px;
+}
+pre .c{color:#7f8db0}
+pre .k{color:#8fb7ff}
+
+ul.ticks{list-style:none;padding:0;margin:0}
+ul.ticks li{padding-left:26px;position:relative;margin-bottom:9px;font-size:.97rem}
+ul.ticks li::before{
+  content:"";position:absolute;left:0;top:.55em;width:9px;height:9px;border-radius:50%;
+  background:linear-gradient(140deg,var(--blue),var(--violet));
+}
+
+/* parts table */
+.parts{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:820px){.parts{grid-template-columns:1fr}}
+.part{
+  background:#fff;border:1px solid var(--line);border-left:3px solid var(--blue);
+  border-radius:10px;padding:16px 18px;
+}
+.part b{display:block;color:var(--navy);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.part span{font-size:.97rem;color:var(--body)}
+
+/* app */
+.shots{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:6px 0 40px}
+.shots img{
+  width:224px;border-radius:16px;border:1px solid var(--line);
+  box-shadow:0 20px 44px -18px rgba(13,42,99,.42);
+}
+@media(max-width:560px){.shots img{width:44%}}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0 0 26px}
+.steps li{
+  counter-increment:s;position:relative;padding:0 0 0 44px;margin-bottom:16px;font-size:1rem;
+}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:-1px;width:29px;height:29px;border-radius:50%;
+  background:linear-gradient(140deg,var(--navy),var(--blue));color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.86rem;
+}
+.notice{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 32px;
+  box-shadow:0 1px 3px rgba(17,26,46,.05);
+}
+.badge-free{
+  display:inline-block;background:#e7f7ee;color:#116b3d;border:1px solid #c6ecd8;
+  font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 12px;border-radius:999px;margin-bottom:16px;
+}
+.small{font-size:.9rem;color:var(--muted)}
+
+/* footer */
+footer{background:#0d1526;color:#a9b6d1;padding:56px 0 40px;font-size:.95rem}
+footer h4{color:#fff;font-size:1rem;margin-bottom:12px}
+footer a{color:#9fc0ff}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;margin-bottom:36px}
+@media(max-width:820px){.foot-grid{grid-template-columns:1fr;gap:26px}}
+.foot-grid ul{list-style:none;padding:0;margin:0}
+.foot-grid li{margin-bottom:8px}
+.foot-bottom{border-top:1px solid #1e2b45;padding-top:22px;font-size:.87rem;color:#7d8aa8;
+  display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between}
+.cite{background:#131d33;border:1px solid #1e2b45;border-radius:10px;padding:14px 16px;
+  font:500 .82rem/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#c3cfe8;overflow-x:auto}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="assets/psdat_icon.png" alt="">PSDAT</a>
+    <div class="navlinks">
+      <a href="#book">Book</a>
+      <a href="#software">Software</a>
+      <a href="#app">App</a>
+      <a href="https://github.com/ismaelabdulrahman/psdat-book">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Free book · Open source · Free companion app</span>
+      <h1>Power System Dynamics of <span>Renewable-Dominated Grids</span></h1>
+      <p class="lede">
+        A graduate textbook and an open toolbox, built together. Every model, algorithm and
+        numerical result in the book is reproducible with PSDAT — the equations you read and
+        the code that solves them are, by construction, the same.
+      </p>
+      <p class="byline">
+        A Transparent, Computational Approach with PSDAT · First Edition<br>
+        Dr. Ismael Khorshed Abdulrahman — Erbil Polytechnic University
+      </p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://github.com/ismaelabdulrahman/psdat-book/raw/main/book/Power-System-Dynamics-of-Renewable-Dominated-Grids.pdf">⬇ Download the book (PDF)</a>
+        <a class="btn btn-secondary" href="#app">📱 Get the free app</a>
+        <a class="btn btn-ghost" href="https://github.com/ismaelabdulrahman/psdat-book">View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="cover-frame">
+      <img src="assets/cover.png" alt="Book cover — Power System Dynamics of Renewable-Dominated Grids"
+           onerror="this.parentNode.innerHTML='&lt;div class=\'cover-fallback\'&gt;&lt;div class=\'t1\'&gt;Power System Dynamics of Renewable-Dominated Grids&lt;/div&gt;&lt;div class=\'t2\'&gt;A Transparent, Computational Approach with PSDAT&lt;/div&gt;&lt;div class=\'t3\'&gt;ISMAEL KHORSHED ABDULRAHMAN&lt;/div&gt;&lt;/div&gt;'">
+    </div>
+  </div>
+</header>
+
+<!-- ------------------------------------------------------- how it works -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Read it, run it, push on it</h2>
+      <p>Most power-system texts stop at the equation. This one hands you the solver that
+         produced every number on the page.</p>
+    </div>
+    <div class="grid3">
+      <div class="card">
+        <div class="num">1</div>
+        <h3>Read</h3>
+        <p>Twenty-four chapters from the algebraic network and the synchronous machine through
+           grid-forming converters to wide-area damping control — derived in full, with worked
+           examples and end-of-chapter problems.</p>
+      </div>
+      <div class="card">
+        <div class="num">2</div>
+        <h3>Run</h3>
+        <p>Every model exists twice: a readable Python reference implementation and a MATLAB
+           edition checked for numerical parity against it. No compiled black box anywhere in
+           the chain.</p>
+      </div>
+      <div class="card">
+        <div class="num">3</div>
+        <h3>Push on it</h3>
+        <p>Change a reactance, trip a line, raise the inverter share, and watch what the theory
+           predicted actually happen — on your desktop or in your hand.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ------------------------------------------------------------- book -->
+<section class="alt" id="book">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>The book</h2>
+      <p>Free to read and download. Seven parts, twenty-four chapters,
+         five appendices.</p>
+    </div>
+
+    <div class="parts" style="margin-bottom:34px">
+      <div class="part"><b>Part I</b><span>Foundations and the transparent-computation philosophy — the modern grid, the DAE formulation, the network.</span></div>
+      <div class="part"><b>Part II</b><span>Synchronous machines and their controls — machine models, excitation, governors, fuzzy control.</span></div>
+      <div class="part"><b>Part III</b><span>Inverter-based resources — VSCs, grid-following and grid-forming, PV, wind, storage, grid support.</span></div>
+      <div class="part"><b>Part IV</b><span>System dynamics and stability — assembly, transient, small-signal, voltage and frequency stability.</span></div>
+      <div class="part"><b>Part V</b><span>Compensation, control and the wide-area grid — FACTS, damping control, phasor measurement units.</span></div>
+      <div class="part"><b>Part VI</b><span>System operation and economics — security assessment and market economics.</span></div>
+      <div class="part"><b>Part VII</b><span>Research and reference — open problems and how to take the toolbox further.</span></div>
+      <div class="part"><b>Appendices</b><span>PSDAT reference, test-system data, mathematical background, worked solutions, glossary.</span></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>What's in every chapter</h3>
+        <ul class="ticks">
+          <li>Learning objectives up front, a summary and problems at the end</li>
+          <li>Worked examples carried through to numbers</li>
+          <li>PSDAT laboratories — hands-on, indexed in their own list</li>
+          <li>Standard test systems: IEEE 9, 14, 30, 39, 57, 118 and 300 bus, Kundur two-area, 16-machine 68-bus</li>
+        </ul>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start">
+        <h3>Get the PDF</h3>
+        <p style="margin-bottom:18px">The complete book, free to read and download.</p>
+        <a class="btn btn-primary" href="https://github.com/ismaelabdulrahman/psdat-book/raw/main/book/Power-System-Dynamics-of-Renewable-Dominated-Grids.pdf">⬇ Download the book (PDF)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------------------------- software -->
+<section id="software">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>The software</h2>
+      <p>The same toolbox in two languages, checked against each other. MIT licensed.</p>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>🐍 Python — the reference implementation</h3>
+        <p style="margin-bottom:16px">Readable, dependency-light, cross-platform. Power flow, time-domain
+           simulation, linearization and modal analysis, FACTS models, a full GUI, and notebooks.</p>
+<pre><span class="c"># clone and run</span>
+git clone https://github.com/ismaelabdulrahman/psdat-book.git
+cd psdat-book/python
+pip install -r requirements.txt
+python psdat_gui.py</pre>
+        <p class="small" style="margin-top:12px">Python 3.9+ · NumPy, SciPy, Matplotlib.
+           On Windows, <code>Run PSDAT.bat</code> does it for you.</p>
+      </div>
+
+      <div class="card">
+        <h3>📐 MATLAB — numerical parity</h3>
+        <p style="margin-bottom:16px">The same models in MATLAB, with a graphical app, a self-test, a
+           parity check against the Python engine, and optional Simulink export.</p>
+<pre><span class="c">% add matlab/ to your path, then</span>
+<span class="k">PSDAT_App</span>        <span class="c">% graphical application</span>
+<span class="k">PSDAT_Demo</span>       <span class="c">% scripted demonstration</span>
+<span class="k">PSDAT_SelfTest</span>   <span class="c">% verify the installation</span>
+<span class="k">PSDAT_Parity</span>     <span class="c">% check against Python</span></pre>
+        <p class="small" style="margin-top:12px">MATPOWER optional · Simulink optional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- -------------------------------------------------------------- app -->
+<section class="alt" id="app">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>PSDAT Mobile — the free companion app</h2>
+      <p>The same engine, on your phone, fully offline. Build a network by touch and watch the
+         heat map redraw as the power flow re-solves.</p>
+    </div>
+
+    <div class="shots">
+      <img src="assets/app_diagram.jpg" alt="Single-line diagram with reactive-power-loss heat map">
+      <img src="assets/app_scada.jpg" alt="Supervisory SCADA mode with state estimation">
+      <img src="assets/app_grid.jpg" alt="Multi-machine interconnection, grid layout">
+      <img src="assets/app_pvlab.jpg" alt="Photovoltaic laboratory in night theme">
+    </div>
+
+    <div class="grid2" style="margin-bottom:34px">
+      <div class="card">
+        <h3>What it does</h3>
+        <ul class="ticks">
+          <li><b>Diagram</b> — touch-editable single-line diagram, live power flow, selectable heat-map variable, animated flows</li>
+          <li><b>Studies</b> — transient, small-signal and modal, frequency and voltage, on-device</li>
+          <li><b>PV Lab</b> — I–V and P–V curves, partial shading with bypass diodes, reserve and IEEE 1547-style grid support</li>
+          <li><b>Learn</b> — a guided theory section mirroring the book</li>
+          <li><b>SCADA</b> — supervisory scan, state estimation and drill-down</li>
+          <li>Night and day themes · works with no network connection</li>
+        </ul>
+      </div>
+
+      <div class="notice">
+        <span class="badge-free">Free · closed testing</span>
+        <h3>How to get on the tester list</h3>
+        <p>PSDAT Mobile is currently in closed testing on Google Play — completely free.
+           Here's how to get on the tester list:</p>
+        <ol class="steps">
+          <li>Use an Android phone or tablet.</li>
+          <li><a href="https://forms.gle/y9z1w7kdxS7wnJcU9">Add your email using this short form</a> — enter the
+              Google (Gmail) account you use on your Android device. Your email stays private;
+              only the author sees it.</li>
+          <li>Once you've been added, open the app on Google Play and install it.</li>
+        </ol>
+        <div class="cta" style="margin-bottom:14px">
+          <a class="btn btn-primary" href="https://forms.gle/y9z1w7kdxS7wnJcU9">✉️ Add your email to join</a>
+          <a class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=com.psdat.mobile">Open PSDAT on Google Play →</a>
+        </div>
+        <p class="small" style="margin:0">
+          Because it's a closed test, only approved testers can install it. Your email stays
+          private — only the author sees it — and you'll get access shortly after being added.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ----------------------------------------------------------- footer -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>PSDAT</h4>
+        <p style="margin-bottom:14px">Power System Dynamic Analysis Toolbox — a transparent, open,
+           education-first environment for the static and dynamic analysis of renewable-dominated
+           power systems.</p>
+        <p style="margin:0">
+          <b style="color:#fff">Dr. Ismael Khorshed Abdulrahman</b><br>
+          Department of Technical Information Systems Engineering<br>
+          Erbil Technical Engineering College, Erbil Polytechnic University<br>
+          Erbil 44001, Kurdistan Region, Iraq<br>
+          <a href="mailto:ismael.abdulrahman@epu.edu.iq">ismael.abdulrahman@epu.edu.iq</a>
+        </p>
+      </div>
+      <div>
+        <h4>Project</h4>
+        <ul>
+          <li><a href="https://github.com/ismaelabdulrahman/psdat-book">GitHub repository</a></li>
+          <li><a href="https://github.com/ismaelabdulrahman/psdat-book/raw/main/book/Power-System-Dynamics-of-Renewable-Dominated-Grids.pdf">Download the book</a></li>
+          <li><a href="https://github.com/ismaelabdulrahman/psdat-book/tree/main/python">Python source</a></li>
+          <li><a href="https://github.com/ismaelabdulrahman/psdat-book/tree/main/matlab">MATLAB source</a></li>
+          <li><a href="https://play.google.com/store/apps/details?id=com.psdat.mobile">PSDAT Mobile</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Also by the author</h4>
+        <ul>
+          <li><a href="https://ismaelabdulrahman.github.io/ann-studio/">ANN Studio — artificial neural networks</a></li>
+          <li><a href="https://doi.org/10.1109/OAJPE.2019.2954205">IEEE OAJPE paper (2020)</a></li>
+        </ul>
+        <h4 style="margin-top:22px">License</h4>
+        <ul>
+          <li>Code — MIT</li>
+          <li>Book &amp; content — © all rights reserved</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4>Citation</h4>
+    <div class="cite">I. Abdulrahman, "MATLAB-Based Programs for Power System Dynamic Analysis,"
+IEEE Open Access Journal of Power and Energy, vol. 7, pp. 59–69, 2020.
+doi:10.1109/OAJPE.2019.2954205</div>
+
+    <div class="foot-bottom">
+      <span>© 2026 Ismael Khorshed Abdulrahman</span>
+      <span>Built with PSDAT · Erbil Polytechnic University</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

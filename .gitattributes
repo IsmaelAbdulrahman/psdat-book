@@ -1,0 +1,18 @@
+# Normalize text files, keep binaries and Windows scripts intact.
+* text=auto eol=lf
+
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+*.pdf   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.ico   binary
+*.ipynb binary
+
+# GitHub language stats: don't count the bundled MATPOWER case data
+python/case*.m   linguist-vendored
+python/IEEE9Bus.m linguist-vendored
+matlab/case*.m   linguist-vendored
