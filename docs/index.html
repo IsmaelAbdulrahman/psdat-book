@@ -145,6 +145,17 @@ ul.ticks li::before{
 .part b{display:block;color:var(--navy);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
 .part span{font-size:.97rem;color:var(--body)}
 
+/* desktop showcase */
+.desk-showcase{margin-top:38px}
+.desk-showcase figure{margin:0}
+.desk-showcase img{width:100%;height:auto;display:block;border:1px solid var(--line);
+  border-radius:12px;box-shadow:0 18px 44px -22px rgba(13,42,99,.45)}
+.desk-showcase figcaption{margin-top:10px;font-size:.9rem;color:var(--muted);text-align:center}
+.desk-lead{text-align:center;color:var(--muted);font-size:1rem;margin:2px 0 24px}
+.desk-feature{max-width:880px;margin:0 auto 26px}
+.desk-pair{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:760px){.desk-pair{grid-template-columns:1fr;gap:26px}}
+
 /* app */
 .shots{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:6px 0 40px}
 .shots img{
@@ -331,6 +342,24 @@ python psdat_gui.py</pre>
 <span class="k">PSDAT_SelfTest</span>   <span class="c">% verify the installation</span>
 <span class="k">PSDAT_Parity</span>     <span class="c">% check against Python</span></pre>
         <p class="small" style="margin-top:12px">MATPOWER optional · Simulink optional.</p>
+      </div>
+    </div>
+
+    <div class="desk-showcase">
+      <p class="desk-lead">See it running — the desktop application, in Python (dark &amp; day themes) and the MATLAB edition.</p>
+      <figure class="desk-feature">
+        <img src="assets/desktop_python_dark.jpg" alt="PSDAT Python desktop — 68-bus NETS-NYP network with reactive-power heat map, dark theme">
+        <figcaption>Python desktop — 68-bus NETS-NYP system with a live power-flow heat map (dark theme)</figcaption>
+      </figure>
+      <div class="desk-pair">
+        <figure>
+          <img src="assets/desktop_python_day.jpg" alt="PSDAT Python desktop in day theme with PMU placement">
+          <figcaption>Python desktop — day theme, with PMU placement</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/desktop_matlab.jpg" alt="PSDAT MATLAB edition — IEEE 9-bus power flow with results table">
+          <figcaption>MATLAB edition — IEEE 9-bus power flow</figcaption>
+        </figure>
       </div>
     </div>
   </div>
